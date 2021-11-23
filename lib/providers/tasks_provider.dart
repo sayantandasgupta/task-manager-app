@@ -1,13 +1,42 @@
 import 'package:flutter/widgets.dart';
 
 import '../models/models.dart';
+import '../database/db_helper.dart';
 
 class TasksProvider with ChangeNotifier {
-  List<Task> _dueTasks = [
-    Task(id: DateTime.now().toString(), title: 'Test', dueDate: '2021-11-21')
-  ];
+  List<Task> _dueTasks = [];
 
   List<Task> get dueTasksList {
     return [..._dueTasks];
+  }
+
+  void addTask(String title, String dueDate) {
+    final newTask = Task(
+      id: DateTime.now().toString(),
+      title: title,
+      dueDate: dueDate,
+    );
+    _dueTasks.add(newTask);
+    notifyListeners();
+    DBHelper.insert({
+      'id': newTask.id,
+      'title': title,
+      'dueDate': dueDate,
+    });
+  }
+
+  Future<void> fetchAndSetTasks() async {
+    final dataList = await DBHelper.fetch();
+
+    _dueTasks = dataList
+        .map(
+          (item) => Task(
+            id: item['id'],
+            title: item['title'],
+            dueDate: item['dueDate'],
+          ),
+        )
+        .toList();
+    notifyListeners();
   }
 }
