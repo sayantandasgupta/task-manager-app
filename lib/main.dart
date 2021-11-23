@@ -54,6 +54,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           HomeScreen.routeName: (ctx) => const HomeScreen(),
+          AddTaskScreen.routeName: (ctx) => const AddTaskScreen()
         },
       ),
     );

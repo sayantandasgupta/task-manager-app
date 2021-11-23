@@ -18,12 +18,11 @@ class HomeScreen extends StatelessWidget {
         title: Text(
           'Due Tasks',
           style: Theme.of(context).textTheme.headline2!.copyWith(
-                fontSize: 32,
+                fontSize: 24,
               ),
         ),
         centerTitle: true,
       ),
-      extendBodyBehindAppBar: true,
       body: FutureBuilder(
         future: Provider.of<TasksProvider>(context, listen: false)
             .fetchAndSetTasks(),
@@ -64,7 +63,7 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          //TODO Navigate to the add task page
+          Navigator.of(context).pushNamed('/add-task');
         },
         child: const Icon(Icons.add),
       ),

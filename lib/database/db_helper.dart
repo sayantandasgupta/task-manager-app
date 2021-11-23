@@ -5,13 +5,10 @@ class DBHelper {
   static Future<Database> getDatabase() async {
     final dbPath = await getDatabasesPath();
 
-    final database = await openDatabase(path.join(dbPath, 'tasks.db'),
-        onCreate: (db, version) {
+    return openDatabase(path.join(dbPath, 'tasks.db'), onCreate: (db, version) {
       return db.execute(
           'CREATE TABLE due_tasks(id TEXT PRIMARY KEY, title TEXT, dueDate TEXT)');
     }, version: 1);
-
-    return database;
   }
 
   static Future<void> insert(Map<String, dynamic> data) async {
