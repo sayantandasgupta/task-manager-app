@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:task_manager_app/providers/providers.dart';
-import 'package:task_manager_app/utils/utils.dart';
-import 'package:task_manager_app/widgets/task_card.dart';
+
+import '../providers/providers.dart';
+import '../utils/utils.dart';
+import '../widgets/task_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -52,8 +53,7 @@ class HomeScreen extends StatelessWidget {
                                   itemBuilder: (ctx, index) {
                                     final dueTasksList = dueTasks.dueTasksList;
                                     return TaskCard(
-                                      title: dueTasksList[index].title,
-                                      dueDate: dueTasksList[index].dueDate,
+                                      task: dueTasksList[index],
                                     );
                                   },
                                   itemCount: dueTasks.dueTasksList.length,

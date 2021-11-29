@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:task_manager_app/providers/providers.dart';
 
+import '../providers/providers.dart';
 import '../utils/utils.dart';
 
 class AddTaskScreen extends StatefulWidget {

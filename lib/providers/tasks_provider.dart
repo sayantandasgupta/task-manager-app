@@ -25,6 +25,12 @@ class TasksProvider with ChangeNotifier {
     });
   }
 
+  void deleteTask(String id) {
+    _dueTasks.removeWhere((element) => element.id == id);
+    notifyListeners();
+    DBHelper.delete(id);
+  }
+
   Future<void> fetchAndSetTasks() async {
     final dataList = await DBHelper.fetch();
 
